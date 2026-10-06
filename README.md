@@ -1,16 +1,19 @@
-# React + Vite + Bun
+# React + Vite + TypeScript + Bun
 
-This template provides a minimal setup to get React working with Vite and Bun, including Hot Module Replacement (HMR) and ESLint.
+This template provides a minimal setup to get React working with Vite, TypeScript, and Bun, including Hot Module Replacement (HMR) and ESLint.
 
-Bun is used as the JavaScript runtime and package manager instead of npm.
+Bun is used as the JavaScript runtime and package manager.
 
 ## Project Structure
 
-- `Dockerfile.init`: Dockerfile used for initializing the React project with Vite and Bun.
-- `Dockerfile`: Dockerfile used for running the React project with Bun.
+- `Dockerfile.init`: Dockerfile used for initializing the React + TypeScript project with Vite and Bun.
+- `Dockerfile`: Dockerfile used for running the React application with Bun.
 - `docker-compose.init.yml`: Docker Compose file for initializing the project.
 - `docker-compose.yml`: Docker Compose file for running the project.
-- `vite.config.js`: Vite configuration file.
+- `vite.config.ts`: Vite TypeScript configuration file.
+- `tsconfig.json`: Main TypeScript configuration.
+- `tsconfig.app.json`: TypeScript configuration for the React application.
+- `tsconfig.node.json`: TypeScript configuration for Vite and Node-related files.
 
 ## Prerequisites
 
@@ -23,17 +26,19 @@ Bun does not need to be installed locally because it runs inside Docker.
 
 ### 1. Initialize the Project
 
-Run the following command to initialize the React project with Vite:
+Run the following command to initialize the React + TypeScript project with Vite:
 
 ```bash
 docker compose -f docker-compose.init.yml run --rm init
 ```
 
+The project uses the Vite `react-ts` template.
+
 ### 2. Configure Vite
 
-Modify `vite.config.js`:
+The project uses `vite.config.ts`:
 
-```javascript
+```ts
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -49,16 +54,12 @@ export default defineConfig({
 
 The `plugins` option enables React support through `@vitejs/plugin-react`.
 
-The `server` configuration is important when running Vite inside Docker:
+The server configuration is required when running Vite inside Docker:
 
-- `host: '0.0.0.0'` makes the Vite development server accessible outside the Docker container.
-- `port: 5173` runs Vite on its default development port.
-
-The Docker Compose configuration should therefore expose port `5173:5173`.
+- `host: '0.0.0.0'` makes Vite accessible outside the Docker container.
+- `port: 5173` runs the Vite development server on port `5173`.
 
 ### 3. Build and Start the Application
-
-Use the main `docker-compose.yml` file to build and start the application:
 
 ```bash
 docker compose up -d --build

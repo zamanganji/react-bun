@@ -2,4 +2,4 @@ FROM oven/bun:latest
 
 WORKDIR /app
 
-CMD ["bun", "create", "vite", ".", "--template", "react"]
+CMD ["bun", "create", "vite", ".", "--template", "react-ts"]

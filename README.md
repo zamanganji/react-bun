@@ -34,25 +34,6 @@ docker compose -f docker-compose.init.yml run --rm init
 
 The project uses the Vite `react-ts` template.
 
-### 2. Configure Vite
-
-The project uses `vite.config.ts`:
-
-```ts
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-export default defineConfig({
-  plugins: [react()],
-
-  server: {
-    host: '0.0.0.0',
-    port: 5173,
-  },
-})
-```
-
-The `plugins` option enables React support through `@vitejs/plugin-react`.
 
 The server configuration is required when running Vite inside Docker:
 

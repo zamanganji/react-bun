@@ -1,0 +1,11 @@
+services:
+  init:
+    build:
+      context: .
+      dockerfile: Dockerfile.init
+
+    volumes:
+      - .:/app
+
+    stdin_open: true
+    tty: true
